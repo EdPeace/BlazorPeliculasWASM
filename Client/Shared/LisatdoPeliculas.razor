@@ -1,5 +1,30 @@
-﻿<h3>LisatdoPeliculas</h3>
-
+﻿<h3>Listado de Peliculas</h3>
+ @if (Peliculas is null)
+    {
+       <img src="https://media.tenor.com/On7kvXhzml4AAAAi/loading-gif.gif" alt="Cargando"/>
+    }else if(Peliculas.Count == 0)
+    {
+        <h2>No hay peliculas</h2>
+    }
+    else
+    {
+        @foreach (var pelicula in Peliculas)
+        {
+           <PeliculaIndividual pelicula=pelicula/>
+        }
+    }
 @code {
+    [Parameter]
+    [EditorRequired]
+    public List<Pelicula>? Peliculas { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(3000);
+        
+    }
+
+    
+    
     
 }

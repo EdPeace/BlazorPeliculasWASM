@@ -3,52 +3,14 @@
 
 <div>
     <h1>Peliculas</h1>
-    @if (Peliculas is null)
-    {
-       <img src="https://media.tenor.com/On7kvXhzml4AAAAi/loading-gif.gif"/>
-    }else if(Peliculas.Count == 0)
-    {
-        <h2>No hay peliculas</h2>
-    }
-    else
-    {
-        @foreach (var pelicula in Peliculas)
-        {
-            <div>
-                <p> Titulo: @((MarkupString)pelicula.Titulo)
-                @if (DateTime.Today.Subtract(pelicula.FechaLanzamiento).Days < 1200)
-                {
-                    <span style="color: red"> ¡NUEVO!</span>
-                }
-                </p>
-                <p> Fecha de Lanzamiento: @pelicula.FechaLanzamiento.ToString("dd MM yyyy")</p>
-            </div>
-        }
-    }
-
-    @* <h2> Ejemplo For</h2> *@
-    @* @for (var i = 0; i < Peliculas.Count; i++) *@
-    @* { *@
-    @*     <div> *@
-    @*         <p>@(i + 1)) Titulo: @Peliculas[i].Titulo</p> *@
-    @*         <p> Fecha de Lanzamiento: @Peliculas[i].FechaLanzamiento.ToString("dd MM yyyy")</p> *@
-    @*     </div> *@
-    @* } *@
+    <LisatdoPeliculas Peliculas="ObtenerPeliculas()"/>
 </div>
 
 
 @code
 {
 
-    private List<Pelicula>? Peliculas { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        await Task.Delay(3000);
-        Peliculas = ObtenerPeliculas();
-    }
-
-    List<Pelicula> ObtenerPeliculas()
+     List<Pelicula> ObtenerPeliculas()
     {
         return new List<Pelicula>
         {
@@ -59,7 +21,8 @@
             new() { Titulo = "Inglorious Basterds", FechaLanzamiento = new DateTime(2009, 10, 14) },
             new() { Titulo = "Jackie Brown", FechaLanzamiento = new DateTime(1997, 10, 14) },
             new() { Titulo = "The Hateful Eight", FechaLanzamiento = new DateTime(2015, 10, 14) },
-            new() { Titulo = "Once Upon a Time in Hollywood", FechaLanzamiento = new DateTime(2019, 10, 14) }
+            new() { Titulo = "Once Upon a Time in Hollywood", FechaLanzamiento = new DateTime(2019, 10, 14) },
+            new() { Titulo = "Death Proof", FechaLanzamiento = new DateTime(2007, 10, 14) },
         };
     }
 

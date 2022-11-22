@@ -1,5 +1,16 @@
-﻿<h3>PeliculaIndividual</h3>
-
+﻿
+ <div>
+                <p> Titulo: <b>@((MarkupString)pelicula.Titulo)
+                @if (DateTime.Today.Subtract(pelicula.FechaLanzamiento).Days < 1200)
+                {
+                    <span style="color: red"> ¡NUEVO!</span>
+                }
+                </b>
+                </p>
+                <p> Fecha de Lanzamiento: @pelicula.FechaLanzamiento.ToString("dd MM yyyy")</p>
+            </div>
 @code {
-    
+    [Parameter]
+    [EditorRequired]
+    public Pelicula pelicula { get; set; }=null!;
 }
