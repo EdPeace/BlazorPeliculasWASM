@@ -3,27 +3,39 @@
 
 <div>
     <h1>Peliculas</h1>
-    <LisatdoPeliculas Peliculas="ObtenerPeliculas()"/>
+    <LisatdoPeliculas Peliculas="ObtenerPeliculas()" />
+    
+</div>
+<div>
+    <EjemploTxtbox @attributes="@Ejemplotxt"/>
 </div>
 
 
 @code
 {
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(3000);
+    }
 
      List<Pelicula> ObtenerPeliculas()
-    {
-        return new List<Pelicula>
-        {
-            new() { Titulo = "<b>Pulp Fiction</b>", FechaLanzamiento = new DateTime(1994, 10, 14) },
-            new() { Titulo = "Kill Bill", FechaLanzamiento = new DateTime(2003, 10, 14) },
-            new() { Titulo = "Reservoir Dogs", FechaLanzamiento = new DateTime(1992, 10, 14) },
-            new() { Titulo = "Django Unchained", FechaLanzamiento = new DateTime(2012, 10, 14) },
-            new() { Titulo = "Inglorious Basterds", FechaLanzamiento = new DateTime(2009, 10, 14) },
-            new() { Titulo = "Jackie Brown", FechaLanzamiento = new DateTime(1997, 10, 14) },
-            new() { Titulo = "The Hateful Eight", FechaLanzamiento = new DateTime(2015, 10, 14) },
-            new() { Titulo = "Once Upon a Time in Hollywood", FechaLanzamiento = new DateTime(2019, 10, 14) },
-            new() { Titulo = "Death Proof", FechaLanzamiento = new DateTime(2007, 10, 14) },
-        };
-    }
+                 {
+                     return new List<Pelicula>
+                     {
+                         new() { Titulo = "<b>Pulp Fiction</b>", FechaLanzamiento = new DateTime(1994, 10, 14) },
+                         new() { Titulo = "Kill Bill", FechaLanzamiento = new DateTime(2003, 10, 14) },
+                         new() { Titulo = "Reservoir Dogs", FechaLanzamiento = new DateTime(1992, 10, 14) },
+                         new() { Titulo = "Django Unchained", FechaLanzamiento = new DateTime(2012, 10, 14) },
+                         new() { Titulo = "Inglorious Basterds", FechaLanzamiento = new DateTime(2009, 10, 14) },
+                         new() { Titulo = "Jackie Brown", FechaLanzamiento = new DateTime(1997, 10, 14) },
+                         new() { Titulo = "The Hateful Eight", FechaLanzamiento = new DateTime(2015, 10, 14) },
+                         new() { Titulo = "Once Upon a Time in Hollywood", FechaLanzamiento = new DateTime(2019, 10, 14) },
+                         new() { Titulo = "Death Proof", FechaLanzamiento = new DateTime(2007, 10, 14) },
+                     };
+                 }
+    Dictionary<string,object> Ejemplotxt = new Dictionary<string, object>(){
+        {"placeholder", "Escribe!!"},
+        {"readonly", "true"}
+    };
 
 }
