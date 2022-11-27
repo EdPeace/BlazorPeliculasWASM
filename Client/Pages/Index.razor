@@ -8,12 +8,13 @@
     
 </div>
 <div>
-    <EjemploTxtbox @attributes="@Ejemplotxt"/>
+    <EjemploTxtbox @attributes="@Ejemplotxt" OnChange="@ValorCambiado"/>
+    Mira estas escribiendo esto: @Valor
 </div>
-
 
 @code
 {
+    
     protected override async Task OnInitializedAsync()
     {
         await Task.Delay(3000);
@@ -35,8 +36,15 @@
                      };
                  }
     Dictionary<string,object> Ejemplotxt = new Dictionary<string, object>(){
-        {"placeholder", "Escribe!!"},
-        {"readonly", "true"}
+        {"placeholder", "Escribe!!"}
+        
     };
+
+    string? Valor { get; set; }
+    public async void ValorCambiado(string valor)
+    {
+        Valor = valor;
+        await InvokeAsync(StateHasChanged);
+    }
 
 }

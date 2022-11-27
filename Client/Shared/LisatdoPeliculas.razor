@@ -1,11 +1,19 @@
 ﻿<h3>Listado de Peliculas</h3>
  
-        <span><input type="checkbox" @onchange="() => _mostrarBotones=!_mostrarBotones"/>Mostrar Botones</span>
-        <span><input type="checkbox" @bind="_mostrarBotones"/>Mostrar Botones</span>
+        
+<span><input type="checkbox" @bind="_mostrarBotones"/>Mostrar Botones Data bind generico</span>
+
+
 <ListadoGenerico Listado="Peliculas">
+    <Cargando>
+        <div>Cargando...</div>
+    </Cargando>
     <Registro>
-         <PeliculaIndividual pelicula=context rol="_mostrarBotones" EliminarPelicula=@Eliminar></PeliculaIndividual>
+        <PeliculaIndividual pelicula=context rol="_mostrarBotones" EliminarPelicula=@Eliminar></PeliculaIndividual>
     </Registro>
+    <Vacio>
+        <div>No hay peliculas</div>
+    </Vacio>
 </ListadoGenerico>
           
         

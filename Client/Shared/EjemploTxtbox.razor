@@ -1,6 +1,22 @@
-﻿<input type="text" placeholder="Escribe algo waton" @attributes=ParametrosAdicionales />
+﻿<input type="text" placeholder="Escribe algo waton" @attributes=ParametrosAdicionales @bind="@Valor" @bind:event="oninput"/>
 
 @code {
     [Parameter(CaptureUnmatchedValues = true)]
     public IDictionary<string,object>? ParametrosAdicionales { get; set; }
+    
+    [Parameter]
+    [EditorRequired]
+    public  EventCallback<string> OnChange { get; set; }
+
+    string? valor;
+    public string? Valor
+    {
+        get => valor;
+        set
+        {
+            valor = value;
+            OnChange.InvokeAsync(value);
+        }
+    }
+
 } 
