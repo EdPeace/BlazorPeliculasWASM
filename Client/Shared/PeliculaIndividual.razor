@@ -11,7 +11,7 @@
      @if (rol)
      {
        <div>
-                <button @onclick="Eliminar">Borrar</button>
+                <button @onclick="@((() => EliminarPelicula.InvokeAsync(pelicula)))">Borrar</button>
             </div>  
      }
      
@@ -27,4 +27,6 @@
     {
         Console.WriteLine("Borrando "+pelicula.Titulo);
     }
+    [Parameter]
+    public EventCallback<Pelicula> EliminarPelicula { get; set; }
 }

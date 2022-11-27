@@ -1,0 +1,51 @@
+﻿@typeparam Titem
+@if (Listado is null)
+    {
+        @if (Cargando is null)
+        {
+            <h2>No hay peliculas</h2>
+
+        }
+        else
+        {
+            @Cargando
+        }
+        
+    }else if (Listado.Count == 0)
+    {
+
+        @if (Vacio is null)
+        {
+            <h2>No hay peliculas</h2>
+
+        }
+        else
+        {
+            @Vacio
+        }
+    }
+    else
+    {   
+        @foreach(var elemento in Listado)
+        {
+            @Registro(elemento)
+        }
+    }
+
+@code {
+    [Parameter]
+    public RenderFragment? Cargando { get; set; }
+    [Parameter]
+    public RenderFragment? Vacio { get; set; }
+    [Parameter]
+    public RenderFragment<Titem>? Registro { get; set; }
+    [Parameter]
+    [EditorRequired]
+    public List<Titem>? Listado { get; set; }
+
+    private void Eliminar(Titem item)
+    {
+        Listado?.Remove(item);
+    }
+    
+}
